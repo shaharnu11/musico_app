@@ -58,7 +58,7 @@ class Track extends Component {
     }
 
     playTrack = () => {
-        // play the track only if it's not playing already and it has benn loaded
+        // play the track only if it's not playing already and it has been loaded
         if (this.state.trackLoaded) {
             this.setState({
                 trackStatus: Sound.status.PLAYING,
@@ -69,6 +69,20 @@ class Track extends Component {
             })
             this._playButton.setState({
                 percentage: 0,
+                playing: true
+            })
+        }
+    }
+
+    resumeTrack = () => {
+        // play the track only if it's not playing already and it has been loaded
+        if (this.state.trackLoaded) {
+            if (!this._sound.sound.playState)
+                this._sound.sound.play()
+            else {
+                this._sound.sound.resume();
+            }
+            this._playButton.setState({
                 playing: true
             })
         }

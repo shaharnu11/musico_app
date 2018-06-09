@@ -62,22 +62,22 @@ class TrackList extends Component {
                     return true
                 if (!this._trackRefs[secondTrackIndex].state.trackLoaded)
                     return false
-               return this._trackRefs[firstTrackIndex]._sound.sound.duration < this._trackRefs[secondTrackIndex]._sound.sound.duration 
-                
+                return this._trackRefs[firstTrackIndex]._sound.sound.duration < this._trackRefs[secondTrackIndex]._sound.sound.duration
+
             })
             const leadTrackIndex = activeTrackIndexList[0];
             const maxBpm = data[leadTrackIndex].json.bpm;
 
             // set tracks bpm to lead track bpm
             activeTrackIndexList.map((trackIndex) => {
-                if (this._trackRefs[trackIndex].state.trackLoaded)
-                    return this._trackRefs[trackIndex]._playerView.setState({ newBpm: maxBpm });
-                else
-                    return 0;
+                if (this._trackRefs[trackIndex].state.trackLoaded) {
+                    this._trackRefs[trackIndex]._playerView.setState({ newBpm: maxBpm });
+                    this._trackRefs[trackIndex].resumeTrack();
+                }
             })
 
-            this.playAllTracks();
-            this._App._header.setState({playingAll:true})
+
+            this._App._header.setState({ playingAll: true })
         }
     }
 
