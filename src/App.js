@@ -28,13 +28,6 @@ class App extends Component {
     this._header.removeTrack(trackIndex);
   }
 
-  showSpanWarningDisplay = ()=>{
-    this._header.setState({spanWarningDisplay:true})
-  }
-  hideSpanWarningDisplay = ()=>{
-    this._header.setState({spanWarningDisplay:'none'})
-  }
-
   render() {
 
     return (

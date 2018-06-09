@@ -13,7 +13,6 @@ class Header extends Component {
             syncButtonHover: false,
             playButtonHover: false,
             playingAll: false,
-            spanWarningDisplay:'none',
             removedTrackList: [],
             allTracks: data.map((tack) => {
                 return { label: tack.json.owner + " - " + tack.json.songName, value: tack.index }
@@ -78,7 +77,8 @@ class Header extends Component {
                     value: track.index
                 }
             })
-        this.setState({ allTracks, removedTrackList })
+        // update allTracks and removedTrackList and playAll button in case no active tracks are left
+        this.setState({ allTracks, removedTrackList ,playingAll:(this.state.playingAll && removedTrackList.length == 0 ? false : this.state.playingAll)})
     }
 
     render() {
@@ -100,8 +100,7 @@ class Header extends Component {
                         onMouseOut={() => this.mouseOut("play")}>
                         {this.state.playingAll ? "STOP" : "PLAY"}
                     </button>
-                    <div style={{display:this.state.spanWarningDisplay}} className={"spanWarning"}>not all track are loaded yet,please wait</div>
-                    
+
 
                 </div>
                 <Dropdown value={this.dropDownValue}

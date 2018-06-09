@@ -34,24 +34,12 @@ class TrackList extends Component {
     playAllTracks = () => {
         const activeTrackIndexList = this.state.activeTrackIndexList;
         // refernce to this trackList from async function (intervalCheckTracksLoaded)
-        const _this = this;
-
-        // check (loop) that all tracks are loaded (every 200 miliseconds) and then play them all
-        this.intervalCheckTracksLoaded = setInterval(function () {
-            const allTracksLoaded = activeTrackIndexList.every((tractIndex) => {
-                return (_this._trackRefs[tractIndex].state && _this._trackRefs[tractIndex].state.trackLoaded)
-            })
-            if (allTracksLoaded) {
-                _this._App.hideSpanWarningDisplay();
-                activeTrackIndexList.map((trackIndex) => {
-                    return _this._trackRefs[trackIndex].playTrack();
-                })
-                clearTimeout(_this.intervalCheckTracksLoaded);
-                _this.intervalCheckTracksLoaded = null;
-            }else{
-                _this._App.showSpanWarningDisplay();
-            }
-        }, 200);
+        activeTrackIndexList.map((trackIndex) => {
+            if (this._trackRefs[trackIndex].state && this._trackRefs[trackIndex].state.trackLoaded)
+                return this._trackRefs[trackIndex].playTrack();
+            else
+                return 0;
+        })
     }
 
     stopAllTracks = () => {
