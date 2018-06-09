@@ -1,0 +1,83 @@
+.songBox{
+  flex-direction: 'row';
+  flex-flow: row nowrap;
+  display: flex;
+  padding: 5px;
+  padding-bottom: 0px;
+}
+.songItem{
+  display: flex;
+  flex-grow: 10;
+  background:red
+}
+.playDiv{
+  
+  flex: 2;
+}
+.detailsDiv{
+  
+  flex: 4;
+  flex-flow: column;
+  padding-left: 5px;
+}
+.volumeDiv{
+  
+  flex-grow: 3;
+  flex:3;
+  flex-flow: column;
+  text-align: right;
+  
+}
+
+
+.trashButton:focus{outline: 0}
+.detailsDiv_name{
+  font-size: 15px;
+  
+}
+.detailsDiv_artist{
+  font-size: 14px;
+}
+.detailsDiv_bpm{
+  font-size: 10px;
+  color:lightgrey;
+}
+
+.detailsDiv_bars{
+  font-size: 10px;
+  color:lightgrey;
+}
+
+.font-awesome{
+
+  
+}
+.volumeDiv_allBar{
+  
+  flex:1;
+  flex-direction: row;
+  justify-content:space-between;
+  display: flex;
+}
+.volumeDiv_bar{
+  width:60%;
+}
+.songHr{
+  border-color:black;
+  border-width: 0px;
+  background: black;
+  height: 1px;
+  margin-top: 1px;
+}
+.trashButton{
+  border:0px;
+  width:20px;
+  height:20px;
+}
+
+.divLoading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+   width:100%;
+}
