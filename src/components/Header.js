@@ -78,7 +78,7 @@ class Header extends Component {
                 }
             })
         // update allTracks and removedTrackList and playAll button in case no active tracks are left
-        this.setState({ allTracks, removedTrackList ,playingAll:(this.state.playingAll && removedTrackList.length == 0 ? false : this.state.playingAll)})
+        this.setState({ allTracks, removedTrackList ,playingAll:(this.state.playingAll && removedTrackList.length === 0 ? false : this.state.playingAll)})
     }
 
     render() {
