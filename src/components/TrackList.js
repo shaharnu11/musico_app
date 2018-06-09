@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './TrackList.css';
 import Track from './Track'
 import data from '../data'
 import colors from '../colors'
