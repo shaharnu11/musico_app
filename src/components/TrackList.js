@@ -76,7 +76,7 @@ class TrackList extends Component {
                 }
                 return 0;
             })
-            this.setState({activeTrackIndexList})
+            this.setState({ activeTrackIndexList })
             this._App._header.setState({ playingAll: true })
         }
     }
@@ -85,10 +85,12 @@ class TrackList extends Component {
 
         const activeTracks = this.state.activeTrackIndexList.map((trackIndex, index) => {
             const trackDetails = data[trackIndex].json;
+
+            console
             return (
                 <Track ref={_trackRef => this._trackRefs[trackIndex] = _trackRef}
                     _trackList={this}
-                    playColor={colors[index]}
+                    playColor={colors[trackIndex % (colors.length)]}
                     key={trackIndex}
                     trackDetails={trackDetails}
                     trackIndex={trackIndex} />
