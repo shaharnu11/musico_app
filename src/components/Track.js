@@ -89,7 +89,6 @@ class Track extends Component {
 
     handleTrackFinishedPlaying = () => {
         // update play button icon (svg) to pause sign
-        console.log("ASDASD");
         this._playButton.setState({ playing: false, percentage: 0 })
     }
 
