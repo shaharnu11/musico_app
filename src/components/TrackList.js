@@ -63,7 +63,6 @@ class TrackList extends Component {
                 if (!this._trackRefs[secondTrackIndex].state.trackLoaded)
                     return false
                 return this._trackRefs[firstTrackIndex]._sound.sound.duration < this._trackRefs[secondTrackIndex]._sound.sound.duration
-
             })
             const leadTrackIndex = activeTrackIndexList[0];
             const maxBpm = data[leadTrackIndex].json.bpm;
@@ -73,11 +72,11 @@ class TrackList extends Component {
                 if (this._trackRefs[trackIndex].state.trackLoaded) {
                     this._trackRefs[trackIndex]._playerView.setState({ newBpm: maxBpm });
                     this._trackRefs[trackIndex].resumeTrack();
+
                 }
                 return 0;
             })
-
-
+            this.setState({activeTrackIndexList})
             this._App._header.setState({ playingAll: true })
         }
     }

@@ -60,7 +60,7 @@ class Header extends Component {
             .map((track) => {
                 return { label: track.json.owner + " - " + track.json.songName, value: track.index }
             })
-        this.setState({ allTracks, removedTrackList })
+        this.setState({ allTracks, removedTrackList,dropDownValue:this.state.dropDownValue})
     }
 
     removeTrack = (trackIndex) => {

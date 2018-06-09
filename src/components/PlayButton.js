@@ -16,7 +16,7 @@ class PlayButton extends Component {
         this._track = this.props._track;
         this.playColor = this.props.playColor;
     }
-    handlePlayButtonClicked = (type) => {
+    handlePlayButtonClicked = () => {
         if (!this._track._sound.sound.playState) {
             this._track._sound.sound.play();
         } else {

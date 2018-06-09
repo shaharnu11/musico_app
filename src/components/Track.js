@@ -79,13 +79,13 @@ class Track extends Component {
         if (this.state.trackLoaded) {
             if (!this._sound.sound.playState)
                 this._sound.sound.play()
-            else {
+            else if (this._sound.sound.paused) {
                 this._sound.sound.resume();
             }
-            this._playButton.setState({
-                playing: true
-            })
         }
+        this._playButton.setState({
+            playing: true
+        })
     }
 
     resetTrack = () => {
