@@ -4,6 +4,7 @@ import { faPlay, faPause } from '@fortawesome/fontawesome-free-solid/'
 import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import './PlayButton.css'
+//import styled from 'styled-components';
 class PlayButton extends Component {
 
     constructor(props) {
@@ -26,7 +27,7 @@ class PlayButton extends Component {
                 this._track._sound.sound.pause();
             }
         }
-
+        
         // update track loop incase it was in loop due to playAll button 
         if (this._track.state.trackLoop)
             this._track.saveState({
@@ -44,11 +45,14 @@ class PlayButton extends Component {
                             className='font-awesome playAwesome'
                             icon={this.state.playing ? faPause : faPlay}
                         />
-                        <div style={{ position: '' }}>
+                        <div>
                             <CircularProgressbar
                                 textForPercentage={() => ''}
                                 percentage={this.state.percentage}
                                 initialAnimation={false}
+                                styles={{
+                                    path: {fill:`${this.playColor}`,stroke:`${this.playColor}` },
+                                  }}
                             />
                         </div>
                     </div>
@@ -57,6 +61,7 @@ class PlayButton extends Component {
         );
     }
 }
+
 
 
 export default PlayButton;

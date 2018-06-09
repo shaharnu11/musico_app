@@ -74,6 +74,7 @@ class TrackList extends Component {
                     this._trackRefs[trackIndex]._playerView.setState({ newBpm: maxBpm });
                     this._trackRefs[trackIndex].resumeTrack();
                 }
+                return 0;
             })
 
 

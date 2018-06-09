@@ -30,7 +30,7 @@ const jsonSongList = [{
     bpm:90
     }];
 
-
+    // reformat json ,add uniaue ID (not relaying on given id's) 
     const jsonSongListWithIds = jsonSongList.map((json,index) => {
         const jsonUrlSplit = json.url.split("/");
         const songName = jsonUrlSplit[jsonUrlSplit.length -1];
