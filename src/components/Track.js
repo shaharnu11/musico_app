@@ -10,12 +10,15 @@ class Track extends Component {
 
     constructor(props) {
         super(props);
+
+        // temp var - make sure the component will rerender in case it needed
         this.state = {
             trackLoaded: false,
             trackStatus: Sound.status.STOPPED,
             trackLoop: false,
             trackVolume: 100,
             trackPosstion: 0,
+            temp: -1
         }
 
         this.trackIndex = props.trackIndex;
@@ -27,13 +30,12 @@ class Track extends Component {
     }
 
 
-    handleTrackLoaded  = (track) => {
-        // update when the track is loaded at least 80% (prevent lags)
+    handleTrackLoaded = (track) => {
+        // update when the track is loaded (prevent lags)
 
-        if (track.bytesLoaded && track.bytesLoaded >= track.bytesTotal * 0.80) {
-            this.setState({ trackLoaded: true })
-        }
+        this.setState({ trackLoaded: true })
     }
+
     saveState = (json) => {
         // save sound state to the track component state (json: possible aditional state)
         if (this.state.trackLoaded) {
@@ -45,7 +47,6 @@ class Track extends Component {
                     trackStatus = Sound.status.PAUSED;
                 else
                     trackStatus = Sound.status.PLAYING
-
             }
             this.setState({
                 trackPosstion: this._sound.sound.position,
@@ -59,11 +60,12 @@ class Track extends Component {
     playTrack = () => {
         // play the track only if it's not playing already and it has benn loaded
         if (this.state.trackLoaded) {
-            this._sound.sound.pause();
-            this.saveState({
+            this.setState({
                 trackStatus: Sound.status.PLAYING,
                 trackPosstion: 0,
+                trackVolume: this._sound.sound.volume,
                 trackLoop: true,
+                temp: this.state.temp * -1
             })
             this._playButton.setState({
                 percentage: 0,
@@ -76,9 +78,12 @@ class Track extends Component {
         // reset track in case stopAll button was pressed(set position:0 )
         if (this.state.trackLoaded) {
             this._sound.sound.pause();
-            this.saveState({
+            this.setState({
                 trackStatus: Sound.status.PAUSED,
                 trackPosstion: 0,
+                trackVolume: this._sound.sound.volume,
+                trackLoop: true,
+                temp: this.state.temp * -1
             })
             this._playButton.setState({
                 percentage: 0,
@@ -106,10 +111,16 @@ class Track extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
+
+        console.log(this.trackIndex)
         // update component (render it) only if state is chaneged
-        for (let key in nextState) {
-            if (nextState[key] !== this.state[key]) {
-                return true;
+        if (nextState) {
+            console.log(nextState);
+            for (let key in nextState) {
+                if (nextState[key] !== this.state[key]) {
+                    console.log(this.state[key] + "   " + nextState[key]);
+                    return true;
+                }
             }
         }
         return false;
@@ -124,7 +135,7 @@ class Track extends Component {
             url={trackDetails.url}
             playStatus={this.state.trackLoaded ? this.state.trackStatus : Sound.status.STOPPED}
             playFromPosition={this.state.trackPosstion}
-            onLoading={this.handleTrackLoaded}
+            onLoad={this.handleTrackLoaded}
             onPlaying={this.handleTrackPlaying}
             autoLoad={true}
             position={this.state.trackPosstion}
@@ -134,7 +145,7 @@ class Track extends Component {
             playbackRate={1}
         />
 
-        // In case track isn't loaded yet -> load "loading animation"
+        // In case sound isn't loaded yet -> load "loading animation" while loading sound
         if (!this.state.trackLoaded) {
             return (
                 <div className="divLoading">

@@ -1,6 +1,6 @@
 const jsonSongList = [{
     Id:1,
-    url:"https://s3.amazonaws.com/candidate-task/Track+1.mp3",
+    url:"tempSong.mp3",
     owner:"Ori Winokur",
     bpm:120
     },{
@@ -28,7 +28,12 @@ const jsonSongList = [{
     url:"https://s3.amazonaws.com/candidate-task/Track+6",
     owner:"Barak Inbar",
     bpm:90
-    }];
+    },{
+        Id:7,
+        url:"tempSong.mp3",
+        owner:"temp temp",
+        bpm:110
+        }];
 
 
     const jsonSongListWithIds = jsonSongList.map((json,index) => {

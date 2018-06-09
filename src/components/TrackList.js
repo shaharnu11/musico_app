@@ -58,7 +58,12 @@ class TrackList extends Component {
 
             // sort tracks by leader bpm
             activeTrackIndexList.sort((firstTrackIndex, secondTrackIndex) => {
-                return data[firstTrackIndex].json.bpm < data[secondTrackIndex].json.bpm
+                if (!this._trackRefs[firstTrackIndex].state.trackLoaded)
+                    return true
+                if (!this._trackRefs[secondTrackIndex].state.trackLoaded)
+                    return false
+               return this._trackRefs[firstTrackIndex]._sound.sound.duration < this._trackRefs[secondTrackIndex]._sound.sound.duration 
+                
             })
             const leadTrackIndex = activeTrackIndexList[0];
             const maxBpm = data[leadTrackIndex].json.bpm;
@@ -70,7 +75,9 @@ class TrackList extends Component {
                 else
                     return 0;
             })
-            this.setState({ activeTrackIndexList })
+
+            this.playAllTracks();
+            this._App._header.setState({playingAll:true})
         }
     }
 
