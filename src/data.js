@@ -1,6 +1,6 @@
 const jsonSongList = [{
     Id:1,
-    url:"tempSong.mp3",
+    url:"https://s3.amazonaws.com/candidate-task/Track+1.mp3",
     owner:"Ori Winokur",
     bpm:120
     },{

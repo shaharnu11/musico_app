@@ -5,10 +5,6 @@ import './App.css';
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   addTrack = (trackIndex) => {
     // add track to avtive track list
     this._trackList.addTrack(trackIndex);
@@ -30,6 +26,13 @@ class App extends Component {
   removeTrack = (trackIndex) => {
     // remove track from selection list
     this._header.removeTrack(trackIndex);
+  }
+
+  showSpanWarningDisplay = ()=>{
+    this._header.setState({spanWarningDisplay:true})
+  }
+  hideSpanWarningDisplay = ()=>{
+    this._header.setState({spanWarningDisplay:'none'})
   }
 
   render() {

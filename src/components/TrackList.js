@@ -42,11 +42,14 @@ class TrackList extends Component {
                 return (_this._trackRefs[tractIndex].state && _this._trackRefs[tractIndex].state.trackLoaded)
             })
             if (allTracksLoaded) {
+                _this._App.hideSpanWarningDisplay();
                 activeTrackIndexList.map((trackIndex) => {
                     return _this._trackRefs[trackIndex].playTrack();
                 })
                 clearTimeout(_this.intervalCheckTracksLoaded);
                 _this.intervalCheckTracksLoaded = null;
+            }else{
+                _this._App.showSpanWarningDisplay();
             }
         }, 200);
     }

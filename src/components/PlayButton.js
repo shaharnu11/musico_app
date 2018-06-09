@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { faPlay, faPause } from '@fortawesome/fontawesome-free-solid/'
-import Sound from 'react-sound';
 import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import './PlayButton.css'

@@ -27,11 +27,13 @@ class Track extends Component {
     }
 
 
-    handleTrackLoaded = () => {
-        // update when the track is loaded (prevent lags)
-        this.setState({ trackLoaded: true })
-    }
+    handleTrackLoaded  = (track) => {
+        // update when the track is loaded at least 80% (prevent lags)
 
+        if (track.bytesLoaded && track.bytesLoaded >= track.bytesTotal * 0.80) {
+            this.setState({ trackLoaded: true })
+        }
+    }
     saveState = (json) => {
         // save sound state to the track component state (json: possible aditional state)
         if (this.state.trackLoaded) {
@@ -123,7 +125,7 @@ class Track extends Component {
             url={trackDetails.url}
             playStatus={this.state.trackLoaded ? this.state.trackStatus : Sound.status.STOPPED}
             playFromPosition={this.state.trackPosstion}
-            onLoad={this.handleTrackLoaded}
+            onLoading={this.handleTrackLoaded}
             onPlaying={this.handleTrackPlaying}
             autoLoad={true}
             position={this.state.trackPosstion}
