@@ -126,13 +126,10 @@ class Track extends Component {
 
     shouldComponentUpdate(nextProps, nextState) {
 
-        console.log(this.trackIndex)
         // update component (render it) only if state is chaneged
         if (nextState) {
-            console.log(nextState);
             for (let key in nextState) {
                 if (nextState[key] !== this.state[key]) {
-                    console.log(this.state[key] + "   " + nextState[key]);
                     return true;
                 }
             }
